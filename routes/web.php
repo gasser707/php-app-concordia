@@ -37,3 +37,5 @@ Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->na
 
 
 Route::get('/person', [PersonController::class, 'index']);
+Route::get('/person/{id}', [PersonController::class, 'show']);
+

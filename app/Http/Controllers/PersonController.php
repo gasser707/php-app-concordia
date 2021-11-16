@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PersonController extends Controller
 {
@@ -14,10 +15,13 @@ class PersonController extends Controller
         return view('persons.index');
     }
 
-    public function show(Post $post)
+    public function show($id)
     {
-        return view('posts.show', [
-            'post' => $post
+
+        $person = DB::select('select * from Person where id = :id', ['id' => $id]);
+        echo(1);
+        return view('persons.show', [
+            'person' => $person
         ]);
     }
 
