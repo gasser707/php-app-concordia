@@ -107,8 +107,6 @@ class PersonController extends Controller
         ]);
     }
 
-
-
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -120,12 +118,9 @@ class PersonController extends Controller
         return back();
     }
 
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        $this->authorize('delete', $post);
-
-        $post->delete();
-
+        $deleted = DB::delete('delete from Person where id =?', [$id]);
         return back();
     }
 }
