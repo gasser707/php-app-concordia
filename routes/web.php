@@ -40,4 +40,4 @@ Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->na
 Route::get('/person', [PersonController::class, 'index']);
 
 Route::get('/vaxfacility', [VaccinationFacilityController::class, 'index']);
-Route::post('/vaxfacility', [VaccinationFacilityController::class, 'read']);
+Route::get('/vaxfacility/{vaxfacility}', [VaccinationFacilityController::class, 'show'])->name('facility.show');

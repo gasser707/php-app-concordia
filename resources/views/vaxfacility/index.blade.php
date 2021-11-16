@@ -145,13 +145,12 @@
                 </button>
             </div>
 
+
+
             @if ($facilities)
                 @foreach ($facilities as $facility)
-                    {{-- <x-post :post="$post" /> --}}
-                    {{-- {{ $facility->facilityName->capacity }} --}}
-                    @foreach ($facility as $value)
-                        {{ $value }}
-                    @endforeach
+                    <x-table :facility="$facility" />
+
                 @endforeach
 
                 {{-- {{ $facilities->links() }} --}}
