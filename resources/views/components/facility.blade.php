@@ -49,8 +49,9 @@
     <td class="px-6 py-4">
         <form action="{{ route('facility.delete', $facility->id) }}" method="post">
             @csrf
-            <button type="submit">
-                <a href="" class="px-4 py-1 text-sm text-white bg-red-400 rounded">Delete</a>
+            @method('DELETE')
+            <button class="px-4 py-1 text-sm text-white bg-red-400 rounded" type=" submit">
+                Delete
             </button>
         </form>
     </td>
