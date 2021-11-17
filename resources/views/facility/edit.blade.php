@@ -1,133 +1,115 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex justify-center">
-    <div class="w-4/12 bg-white p-6 rounded-lg">
-        <form action="{{ route('person.edit', $person->id) }}" method="post">
-            @csrf
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">id</p>
-                <label for="id" class="sr-only">id</label>
-                <input disabled type="text" name="id" id="id" placeholder="id" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('name') border-red-500 @enderror" value="{{ $person->id }}">
-            </div>
+    <div class="flex justify-center">
+        <div class="w-4/12 bg-white p-6 rounded-lg">
+            <form action="{{ route('facility.edit', $facility->id) }}" method="post">
+                @csrf
+                <div class="mb-4">
+                    <p class="px-6 py-2 text-xs text-gray-500">facilityName</p>
+                    <label for="facilityName" class="sr-only">facilityName</label>
+                    <input type="text" name="facilityName" id="facilityName" placeholder="facility name"
+                        class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('name') border-red-500 @enderror" value="">
+                </div>
 
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">firstName</p>
-                <label for="firstName" class="sr-only">firstName</label>
-                <input type="text" name="firstName" id="firstName" placeholder="firstName" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('name') border-red-500 @enderror" value="{{ $person->firstName }}">
-            </div>
+                <div class="mb-4">
+                    <p class="px-6 py-2 text-xs text-gray-500">facility type</p>
 
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">lastName</p>
+                    <label for="facilityType" class="sr-only">facility type</label>
+                    <input type="text" name="facilityType" id="facilityType" placeholder="facilityType"
+                        class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('facilityType') border-red-500 @enderror"
+                        value="">
 
-                <label for="lastName" class="sr-only">lastName</label>
-                <input type="text" name="lastName" id="lastName" placeholder="lastName" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('lastName') border-red-500 @enderror" value="{{ $person->lastName }}">
+                </div>
 
-            </div>
+                <div class="mb-4">
+                    <p class="px-6 py-2 text-xs text-gray-500">capacity</p>
+                    <label for="capacity" class="sr-only">capacity</label>
+                    <input type="text" name="capacity" id="capacity" placeholder="enter capacity"
+                        class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('email') border-red-500 @enderror"
+                        value="">
 
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">email</p>
-                <label for="email" class="sr-only">Email</label>
-                <input type="text" name="email" id="email" placeholder="Your email" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('email') border-red-500 @enderror" value="{{ $person->email}}">
+                </div>
 
-            </div>
+                <div class="mb-4">
+                    <p class="px-6 py-2 text-xs text-gray-500">web address</p>
+                    <label for="webAddress" class="sr-only">web address</label>
+                    <input type="text" name="webAddress" id="webAddress" placeholder="enter website"
+                        class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('age') border-red-500 @enderror" value="">
 
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">age</p>
-                <label for="age" class="sr-only">age</label>
-                <input type="age" name="age" id="age" placeholder="Choose a age" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('age') border-red-500 @enderror" value="{{$person->age}}">
-
-            </div>
-
-
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">citizenship</p>
-
-                <label for="citizenship" class="sr-only">citizenship</label>
-                <input type="citizenship" name="citizenship" id="citizenship" placeholder="Choose a citizenship" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('citizenship') border-red-500 @enderror" value="{{$person->citizenship}}">
-
-            </div>
-
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">dateOfBirth</p>
-
-                <label for="dateOfBirth" class="sr-only">dateOfBirth</label>
-                <input type="dateOfBirth" name="dateOfBirth" id="dateOfBirth" placeholder="Choose a dateOfBirth" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('dateOfBirth') border-red-500 @enderror" value="{{$person->dateOfBirth}}">
-
-            </div>
-
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">phoneNumber</p>
-
-                <label for="phoneNumber" class="sr-only">phoneNumber</label>
-                <input type="phoneNumber" name="phoneNumber" id="phoneNumber" placeholder="Choose a phoneNumber" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('phoneNumber') border-red-500 @enderror" value="{{$person->phoneNumber}}">
-
-            </div>
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">address</p>
-
-                <label for="address" class="sr-only">address</label>
-                <input type="address" name="address" id="address" placeholder="Choose a address" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('address') border-red-500 @enderror" value="{{$person->address}}">
-
-            </div>
-
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">city</p>
-
-                <label for="city" class="sr-only">city</label>
-                <input type="city" name="city" id="city" placeholder="Choose a city" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('city') border-red-500 @enderror" value="{{$person->city}}">
-
-            </div>
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">postalCode</p>
-
-                <label for="postalCode" class="sr-only">postalCode</label>
-                <input type="postalCode" name="postalCode" id="postalCode" placeholder="Choose a postalCode" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('postalCode') border-red-500 @enderror" value="{{$person->postalCode}}">
-
-            </div>
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">province</p>
-
-                <label for="province" class="sr-only">province</label>
-                <input type="province" name="province" id="province" placeholder="Choose a province" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('province') border-red-500 @enderror" value="{{$person->province}}">
-
-            </div>
+                </div>
 
 
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">isRegistered</p>
+                <div class="mb-4">
+                    <p class="px-6 py-2 text-xs text-gray-500">phone number</p>
 
-                <label for="isRegistered" class="sr-only">isRegistered</label>
-                <input type="isRegistered" name="isRegistered" id="isRegistered" placeholder="Choose a isRegistered" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('isRegistered') border-red-500 @enderror" value="{{$person->isRegistered}}">
+                    <label for="phoneNumber" class="sr-only">phone number</label>
+                    <input type="text" name="phoneNumber" id="phoneNumber" placeholder="enter phone number"
+                        class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('phoneNumber') border-red-500 @enderror"
+                        value="">
 
-            </div>
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500"> medCardPassportNum </p>
-                <label for="medCardPassportNum" class="sr-only"> medCardPassportNum </label>
-                <input type="idDocumentCreated" name="medCardPassportNum" id="idDocumentCreated" placeholder="medCardPassportNum" 
-                class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('idDocumentCreated') border-red-500 @enderror" value="{{$person->medCardPassportNum}}">
-            </div>
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">idDocumentCreated</p>
+                </div>
 
-                <label for="idDocumentCreated" class="sr-only">idDocumentCreated</label>
-                <input type="idDocumentCreated" name="idDocumentCreated" id="idDocumentCreated" placeholder="Choose a idDocumentCreated" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('idDocumentCreated') border-red-500 @enderror" value="{{$person->idDocumentCreated}}">
+                <div class="mb-4">
+                    <p class="px-6 py-2 text-xs text-gray-500">facility address</p>
 
-            </div>
+                    <label for="facilityAddress" class="sr-only">facility address</label>
+                    <input type="text" name="facilityAddress" id="facilityAddress" placeholder="enter facility address"
+                        class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('dateOfBirth') border-red-500 @enderror"
+                        value="">
 
-            <div class="mb-4">
-                <p class="px-6 py-2 text-xs text-gray-500">idDocumentExpired</p>
+                </div>
 
-                <label for="idDocumentExpired" class="sr-only">idDocumentExpired</label>
-                <input type="idDocumentExpired" name="idDocumentExpired" id="idDocumentExpired" placeholder="Choose a idDocumentExpired" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('idDocumentExpired') border-red-500 @enderror" value="{{$person->idDocumentExpired}}">
+                <div class="mb-4">
+                    <p class="px-6 py-2 text-xs text-gray-500">city</p>
 
-            </div>
+                    <label for="city" class="sr-only">city</label>
+                    <input type="text" name="city" id="city" placeholder="Choose a city"
+                        class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('phoneNumber') border-red-500 @enderror"
+                        value="">
+
+                </div>
+                <div class="mb-4">
+                    <p class="px-6 py-2 text-xs text-gray-500">province</p>
+
+                    <label for="province" class="sr-only">province</label>
+                    <input type="text" name="province" id="province" placeholder="Choose a province"
+                        class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('address') border-red-500 @enderror"
+                        value="">
+
+                </div>
+
+                <div class="mb-4">
+                    <p class="px-6 py-2 text-xs text-gray-500">postalCode</p>
+
+                    <label for="postalCode" class="sr-only">postalCode</label>
+                    <input type="text" name="postalCode" id="postalCode" placeholder="Choose a postalCode"
+                        class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('city') border-red-500 @enderror" value="">
+
+                </div>
+                <div class="mb-4">
+                    <p class="px-6 py-2 text-xs text-gray-500">manager</p>
+
+                    <label for="manager" class="sr-only">manager</label>
+                    <input type="text" name="manager" id="manager" placeholder="enter manager name"
+                        class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('postalCode') border-red-500 @enderror"
+                        value="">
+
+                </div>
+                <div class="mb-4">
+                    <p class="px-6 py-2 text-xs text-gray-500">isRequiredAppointment</p>
+
+                    <label for="isRequiredAppointment" class="sr-only">isRequiredAppointment</label>
+                    <input type="text" name="isRequiredAppointment" id="isRequiredAppointment" placeholder="Enter 0 or 1"
+                        class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('province') border-red-500 @enderror"
+                        value="">
+                </div>
 
 
-            <div>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded font-medium w-full">Edit</button>
-            </div>
-        </form>
+                <div>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded font-medium w-full">Edit</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 @endsection
