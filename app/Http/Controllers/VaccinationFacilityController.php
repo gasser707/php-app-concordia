@@ -13,9 +13,9 @@ class VaccinationFacilityController extends Controller
     public function index()
     {
 
-        $person = DB::select('select * from Person');
+        $facility = DB::select('select * from vaccinationFacility');
         return view('facility.show', [
-            'person' => $person
+            'facility' => $facility
         ]);   
     }
     
@@ -65,7 +65,7 @@ class VaccinationFacilityController extends Controller
     public function edit(Request $request, $id){
 
            $affected=  DB::update(
-            'update Person set capacity=?, facilityName =?, facilityType=?,
+            'update vaccinationFacility set capacity=?, facilityName =?, facilityType=?,
              webAddress=?, phoneNumber=?,  facilityAddress=?, city=?,
              province=?, postalCode=?, manager=?, isRequiredAppointment=?,
             ',
@@ -94,26 +94,16 @@ class VaccinationFacilityController extends Controller
     public function show($id)
     {
 
-        $person = DB::select('select * from Person where id = :id', ['id' => $id]);
-        return view('persons.show', [
-            'person' => $person
+        $facility = DB::select('select * from vaccinationFacility where id = :id', ['id' => $id]);
+        return view('facility.show', [
+            'facility' => $facility
         ]);
     }
 
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'body' => 'required'
-        ]);
-
-        $request->user()->posts()->create($request->only('body'));
-
-        return back();
-    }
 
     public function destroy($id)
     {
-        $deleted = DB::delete('delete from Person where id =?', [$id]);
+        $deleted = DB::delete('delete from vaccinationFacility where id =?', [$id]);
         return back();
     }
 }
