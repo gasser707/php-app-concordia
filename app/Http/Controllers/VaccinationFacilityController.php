@@ -5,23 +5,98 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Input\Input;
 
 class VaccinationFacilityController extends Controller
 {
 
     public function index()
     {
-        $facilities = DB::select('select * from dnc353_2.vaccinationFacility');
 
-        // return view('user.index', ['users' => $users]);
+        $person = DB::select('select * from Person');
+        return view('facility.show', [
+            'person' => $person
+        ]);   
+    }
+    
 
-        return view('vaxfacility.index', ['facilities' => $facilities]);
+    public function showCreateform(){
+        return view('facility.create');
     }
 
-    public function show(Post $post)
+    public function create(Request $request){
+
+
+        $affected=  DB::insert(
+         'insert into vaccinationFacility (capacity, facilityName, facilityType, webAddress, phoneNumber, facilityAddress, city, province, postalCode, manager, isRequiredAppointment) 
+         values(?,?,?,?,?,?,?,?,?,?,?)',
+         [
+             $request->input('capacity'),
+             $request->input('facilityName'),
+             $request->input('facilityType'),
+             $request->input('webAddress'),
+             $request->input('phoneNumber'),
+             $request->input('facilityAddress'),
+             $request->input('city'),
+             $request->input('province'),
+             $request->input('postalCode'),
+             $request->input('manager'),
+             $request->input('isRequiredAppointment'), 
+             ]
+     );
+     error_log($affected);
+
+     return back();
+
+ }
+
+
+
+    public function showEditform($id){
+
+        $facility = DB::select('select * from vaccinationFacility where id = :id', ['id' => $id]);
+
+        return view('facility.edit', [
+            'facility' => $facility[0]
+        ]);
+    }
+
+    
+    public function edit(Request $request, $id){
+
+           $affected=  DB::update(
+            'update Person set capacity=?, facilityName =?, facilityType=?,
+             webAddress=?, phoneNumber=?,  facilityAddress=?, city=?,
+             province=?, postalCode=?, manager=?, isRequiredAppointment=?,
+            ',
+            [
+             $request->input('capacity'),
+             $request->input('facilityName'),
+             $request->input('facilityType'),
+             $request->input('webAddress'),
+             $request->input('phoneNumber'),
+             $request->input('facilityAddress'),
+             $request->input('city'),
+             $request->input('province'),
+             $request->input('postalCode'),
+             $request->input('manager'),
+             $request->input('isRequiredAppointment'),
+             $id
+            ]
+        );
+        error_log($affected);
+
+        return back();
+
+    }
+
+
+    public function show($id)
     {
-        return view('posts.show', [
-            'post' => $post
+
+        $person = DB::select('select * from Person where id = :id', ['id' => $id]);
+        return view('persons.show', [
+            'person' => $person
         ]);
     }
 
@@ -36,12 +111,9 @@ class VaccinationFacilityController extends Controller
         return back();
     }
 
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        $this->authorize('delete', $post);
-
-        $post->delete();
-
+        $deleted = DB::delete('delete from Person where id =?', [$id]);
         return back();
     }
 }
