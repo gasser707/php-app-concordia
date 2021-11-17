@@ -62,12 +62,12 @@ class VaccinationFacilityController extends Controller
     }
 
     
-    public function edit(Request $request){
+    public function edit(Request $request, $id){
 
            $affected=  DB::update(
             'update vaccinationFacility set capacity=?, facilityName =?, facilityType=?,
              webAddress=?, phoneNumber=?,  facilityAddress=?, city=?,
-             province=?, postalCode=?, manager=?, isRequiredAppointment=?
+             province=?, postalCode=?, manager=?, isRequiredAppointment=? where id=?
             ',
             [
              $request->input('capacity'),
@@ -81,6 +81,7 @@ class VaccinationFacilityController extends Controller
              $request->input('postalCode'),
              $request->input('manager'),
              $request->input('isRequiredAppointment'),
+             $id
              
             ]
         );
