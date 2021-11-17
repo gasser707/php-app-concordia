@@ -62,11 +62,10 @@
     </td>
 
     <td class="px-6 py-4">
-        <form action="{{ route('person.delete', $person->id) }}" method="post">
+        <form action="{{ route('person.delete', $person->id) }}" method="POST">
             @csrf
-            <button type="submit">
-                <a href="" class="px-4 py-1 text-sm text-white bg-red-400 rounded">Delete</a>
-            </button>
+            @method('DELETE')
+            <button type="submit" class="px-4 py-1 text-sm text-white bg-red-400 rounded"> Delete </button>
         </form>
     </td>
 
